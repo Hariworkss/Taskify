@@ -1,0 +1,51 @@
+  <!-- Projects Section -->
+  <section id="section-project">
+    <div class="container-fluid mt-5 ">
+        <div class="row propanel ">
+          <h1 class="text-center  fw-bolder  mt-5 mb-5">Manage Your Projects</h1>
+          <div class="col-md-12 d-flex justify-content-center">
+            <button (click)="toggleProjectDiv()" class="btn btn-dark border-dark pro-button pt-2 ps-3 pe-3 mb-5" style="--fa-animation-duration: 2s;" >Create a Project <i class="fa fa-add ps-2"></i> </button>
+        </div>
+        <div class="row mt-3" *ngIf="projectDiv">
+            <div class="col-md-3 col-sm-0"></div>
+            <div class="col-md-6 col-sm-12 ps-4">
+                <form class="form-property shadow border border-2 rounded p-5 bg-light">
+                    <input [(ngModel)]="proname" name="proname" type="text" placeholder="Enter Project Name" class="form-control mt-2 mb-3">
+
+                    <span class="mt-2">Enter Project ID</span>
+                    <input [(ngModel)]="proid" name="proid"  type="text" placeholder="Enter Project ID" class="form-control">
+
+
+                    <input  type="button" (click)="addProject()" value="Create" class="btn btn-primary mt-2">
+                    <button (click)="toggleProjectDiv()" class="btn btn-danger mt-2 ms-2" style="float: right;">Close</button>
+                </form>         
+               </div>
+            <div class="col-md-3 col-sm-0"></div>
+          </div>
+
+
+          <div class="row text-center mt-2" >
+            <div class="col-md-4 ps-4 d-flex justify-content-center" *ngFor="let project of currentTasks ">
+                
+            <div class="card w-75 mb-3 pb-2">
+
+            <h4 class="card-title fw-bolder mt-2">{{ project.proname }}</h4>
+            <a  (click)="toggleMoreProDetails()"  class=" mt-1 mb-2">More Details</a>                        
+
+            <div  *ngIf="moreProjectDiv">
+                <div class="card-body "*ngFor="let task of project.tasks | filter:searchTerm:'taskname';">
+
+                  <h4 class="card-title fw-bolder">{{ task.taskname }}</h4>
+                  <h5 class="card-text">{{task.taskdesc}}</h5>
+                  <div class="ps-md-4 pe-md-4">
+                    <a href="#!" class="btn btn-dark m-1 d-block"><span class="me-1 fw-bolder ">Status :</span> <span class="text-info">{{task.status}}</span> </a>
+
+                  </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div> 
+</section>
